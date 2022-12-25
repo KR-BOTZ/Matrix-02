@@ -8,7 +8,7 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, MAX_B_TN
 from utils import get_settings, get_size, is_subscribed, save_group_settings, temp
 from database.connections_mdb import active_connection
 import re
@@ -441,7 +441,7 @@ async def settings(client, message):
     
     settings = await get_settings(grp_id)
     try:
-        if settings['auto_ffilter']:
+        if settings['max_btn']:
             settings = await get_settings(grp_id)
     except KeyError:
         await save_group_settings(grp_id, 'auto_ffilter', True)
@@ -531,6 +531,16 @@ async def settings(client, message):
                 InlineKeyboardButton(
                     '✔ Oɴ' if settings["auto_ffilter"] else '✘ Oғғ',
                     callback_data=f'setgs#auto_ffilter#{settings["auto_ffilter"]}#{grp_id}',
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    'Mᴀx Bᴜᴛᴛᴏɴs',
+                    callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
+                ),
+                InlineKeyboardButton(
+                    '10' if settings["max_btn"] else f'{MAX_B_TN}',
+                    callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
                 ),
             ],
         ]
@@ -724,25 +734,4 @@ async def deletemultiplefiles(bot, message):
         reply_markup=InlineKeyboardMarkup(btn)
     )
 
-@Client.on_message(filters.command("deletefiles") & filters.user(ADMINS))
-async def deletemultiplefiles(bot, message):
-    btn = [[
-            InlineKeyboardButton("PʀᴇDVD", callback_data="predvd"),
-            InlineKeyboardButton("PʀᴇDVD Rɪᴘ", callback_data="predvdrip")
-          ],[
-            InlineKeyboardButton("HDᴛs", callback_data="hdts"),
-            InlineKeyboardButton("HD-ᴛs", callback_data="hdtss")
-          ],[
-            InlineKeyboardButton("HDCᴀᴍ", callback_data="hdcam"),
-            InlineKeyboardButton("HD-Cᴀᴍ", callback_data="hdcams")
-          ],[
-            InlineKeyboardButton("CᴀᴍRɪᴘ", callback_data="camrip"),
-            InlineKeyboardButton("S-Pʀɪɴᴛ", callback_data="sprint")
-          ],[
-            InlineKeyboardButton("Cᴀɴᴄᴇʟ", callback_data="close_data")
-          ]]
-    await message.reply_text(
-        text="<b>Sᴇʟᴇᴄᴛ Tʜᴇ Tʏᴘᴇ Oғ Fɪʟᴇs Yᴏᴜ Wᴀɴᴛ Tᴏ Dᴇʟᴇᴛᴇ..?</b>",
-        reply_markup=InlineKeyboardMarkup(btn),
-        quote=True
-    )
+
