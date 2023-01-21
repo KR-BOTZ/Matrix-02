@@ -204,17 +204,17 @@ Nᴀᴍᴇ - {}"""
 <b>♻️ Ꮲᴏᴡᴇʀᴇᴅ Ᏼʏ ♻️ @BGM_LinkzZ </b>"""
 
     IMDB_TEMPLATE_TXT = """
-🏷 Title: {title}
-🎭 Genres: {genres}
-📆 Year: {year}
-🌟 Rating: {rating}
-☀️ Languages</b> : {languages}
-👨‍💼 Dɪʀᴇᴄᴛᴏʀ</b>: {director}\n<b>
-👨🏻‍🦱 Pʀᴏᴅᴜᴄᴇʀ</b>: {producer}\n<b>
-📀 RunTime</b>: {runtime} Minutes\n<b>
-📆 Release Info</b> : {release_date}\n<b>
-📓 Sᴛᴏʀy</b> : <code>{plot}</code>\n\n\n<b>
-🍀Requested by🍀</b> : {message.from_user.mention}"""
+<b>🎬 Tɪᴛʟᴇ : {title}
+📆 Yᴇᴀʀ : {year}
+🔊 Aᴜᴅɪᴏ :  i don't know
+💿 Qᴜᴀʟɪᴛʏ : HD Rip
+🌟 Rᴀᴛɪɴɢ : {rating}
+🎭 Gᴇɴʀᴇ : {genres}
+📥 Upload : @BGM_LinkzZ
+
+Rᴇǫᴜᴇsᴛ Bʏ : {message.from_user.mention}
+🚀 Gʀᴏᴜᴘ : {message.chat.title} </b>
+"""
     
     ALL_FILTERS = """
 <b>Hᴇʏ {}, Tʜᴇsᴇ ᴀʀᴇ ᴍʏ ᴛʜʀᴇᴇ ᴛʏᴘᴇs ᴏғ ғɪʟᴛᴇʀs.</b>"""
